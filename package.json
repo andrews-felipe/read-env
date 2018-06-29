@@ -24,8 +24,6 @@
   },
   "homepage": "https://github.com/yatki/read-env",
   "scripts": {
-    "preversion": "npm test",
-    "prepublish": "npm run build && npm test",
     "eslint:fix": "eslint . --fix --color",
     "eslint:check": "eslint . --color",
     "build": "better-npm-run build",

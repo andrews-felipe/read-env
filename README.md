@@ -119,6 +119,7 @@ const options = readEnv({
   parse: {
     array: false, //not gonna parse arrays
   }, //still gonna parse object, int, float and boolean
+  mandatory: ['EXAMPLE_MANDATORY_KEY', 'EXAMPLE_ANOTHER_MANDATORY_KEY']
 });
 ```
 
@@ -152,6 +153,7 @@ Available Config Options:
 - `filter` (type: *null*|*function*, default: *null*): filters environment variables (overrides prefix rule).
   1. `null`, don't filter varaibles.
   1. `fn(envVarName, index)`, custom filter function (*envVarName* will be provided **without** any transformation).
+- `mandatory` (type: *bool*|*array*, default: *false*): throws exception if given environment variables are not defined. Environment variable names must be provided with original name (**without** any transformation and **with** prefix).
   
 ## Use Case Example
 Recently, I used [Nightmare](https://github.com/segmentio/nightmare) for *acceptance testing* and had several environments which have different configurations.

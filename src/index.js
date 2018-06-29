@@ -15,6 +15,7 @@ export default (options, transformKey = 'camelcase') => {
     },
     ignoreInvalidJSON: true,
     filter: null,
+    mandatory: [],
   };
 
   if (typeof options === 'string') {
@@ -29,6 +30,14 @@ export default (options, transformKey = 'camelcase') => {
   options = Object.assign({}, defaultOptions, options);
 
   let keys = Object.keys(process.env);
+
+  if (options.mandatory && options.mandatory.length) {
+    options.mandatory.forEach((mandatoryKey) => {
+      if (keys.indexOf(mandatoryKey) === -1) {
+        throw Error(`Environment Variable "${mandatoryKey}" is mandatory!`);
+      }
+    });
+  }
 
   if (options.filter) {
     keys = keys.filter(options.filter);
